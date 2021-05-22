@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  application.apicalculajuros:
+    image: ${DOCKER_REGISTRY-}applicationapicalculajuros
+    build:
+      context: .
+      dockerfile: src/Application/Application.ApiCalculaJuros/Dockerfile
+
+  application.apitaxadejuros:
+    image: ${DOCKER_REGISTRY-}applicationapitaxadejuros
+    build:
+      context: .
+      dockerfile: src/Application/Application.ApiTaxaDeJuros/Dockerfile
+

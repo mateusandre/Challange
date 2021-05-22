@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.ApiCalculaJuros
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{A0F770F3-790A-48F4-AA2D-B3AD70F53C64}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{EC05A188-83F2-4D59-8AD2-3BCF987CFD8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{A0F770F3-790A-48F4-AA2D-B3AD70F53C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0F770F3-790A-48F4-AA2D-B3AD70F53C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0F770F3-790A-48F4-AA2D-B3AD70F53C64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC05A188-83F2-4D59-8AD2-3BCF987CFD8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC05A188-83F2-4D59-8AD2-3BCF987CFD8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC05A188-83F2-4D59-8AD2-3BCF987CFD8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC05A188-83F2-4D59-8AD2-3BCF987CFD8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
