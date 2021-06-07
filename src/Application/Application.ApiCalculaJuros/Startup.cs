@@ -1,3 +1,4 @@
+using Infraestructure.Crosscutting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,11 @@ namespace Application.ApiCalculaJuros
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton<ICalculoDeJurosService, CalculoDeJurosService>();
+            services.AddSingleton<IHttpTaxaDeJurosAPI, HttpTaxaDeJurosApi>();
+
+            services.AddHttpClient("TaxaDeJuros", c => c.BaseAddress = new Uri(Configuration["TaxaDeJurosApi"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +43,7 @@ namespace Application.ApiCalculaJuros
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

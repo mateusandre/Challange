@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+ARG BUILD_CONFIGURATION=Debug
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV ASPNETCORE_URLS=http://+:80
+ENV DOTNET_USE_POLLING_FILE_WATCHER=true
+EXPOSE 80
+
+WORKDIR /src
+COPY ["src/Application/Application.ApiCalculaJuros/Application.ApiCalculaJuros.csproj", "src/Application/Application.ApiCalculaJuros/"]
+COPY ["src/Domain/Domain.csproj", "src/Domain/"]
+COPY ["src/Infraestructure/Infraestructure.csproj", "src/Infraestructure/"]
+COPY ["src/Service/Service.csproj", "src/Service/"]
+
+RUN dotnet restore "src/Application/Application.ApiCalculaJuros/Application.ApiCalculaJuros.csproj"
+COPY . .
+WORKDIR "/src/src/Application/Application.ApiCalculaJuros"
+RUN dotnet build --no-restore "Application.ApiCalculaJuros.csproj" -c $BUILD_CONFIGURATION
+
+RUN echo "exec dotnet run --no-build --no-launch-profile -c $BUILD_CONFIGURATION --" > /entrypoint.sh
+
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
