@@ -28,6 +28,7 @@ namespace Application.ApiTaxaDeJuros
         {
             services.AddControllers();
             services.AddSingleton<ITaxaDeJurosService, TaxaDeJurosService>();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,7 +39,13 @@ namespace Application.ApiTaxaDeJuros
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseHttpsRedirection();
+            
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 

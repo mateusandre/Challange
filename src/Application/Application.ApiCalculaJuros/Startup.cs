@@ -32,6 +32,8 @@ namespace Application.ApiCalculaJuros
             services.AddSingleton<ICalculoDeJurosService, CalculoDeJurosService>();
             services.AddSingleton<IHttpTaxaDeJurosAPI, HttpTaxaDeJurosApi>();
 
+            services.AddSwaggerGen();
+
             services.AddHttpClient("TaxaDeJuros", c => c.BaseAddress = new Uri(Configuration["TaxaDeJurosApi"]));
         }
 
@@ -43,7 +45,12 @@ namespace Application.ApiCalculaJuros
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 

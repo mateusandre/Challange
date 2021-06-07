@@ -18,6 +18,6 @@ namespace Application.ApiCalculaJuros.Controllers
         public async Task<decimal> Get(decimal valorInicial, int tempo)
         {
             return await _calculoDeJurosService.CalcularJuros(valorInicial, tempo);
-        }
+        }        
     }
 }

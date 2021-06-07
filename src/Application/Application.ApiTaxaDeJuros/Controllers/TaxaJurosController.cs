@@ -18,6 +18,7 @@ namespace Application.ApiTaxaDeJuros.Controllers
             _taxaDeJurosService = taxaDeJurosService;
         }
 
+        [HttpGet]
         public async Task<decimal> Get()
         {
             return await _taxaDeJurosService.ObterTaxaDeJuros();
