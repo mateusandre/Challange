@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Sockets;
-using System.Text;
+﻿using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Infraestructure.Crosscutting
 {
-    public class HttpTaxaDeJurosApi : BaseHttpRequest, IHttpTaxaDeJurosAPI
+    public class HttpTaxaDeJurosApi : IHttpTaxaDeJurosAPI
     {
-        public HttpTaxaDeJurosApi(IHttpClientFactory clientFactory) : base(clientFactory)
+        protected readonly IHttpClientFactory _clientFactory;
+
+        public HttpTaxaDeJurosApi(IHttpClientFactory clientFactory)
         {
+            _clientFactory = clientFactory;
         }
 
         public async Task<decimal> ObterTaxaDeJuros()

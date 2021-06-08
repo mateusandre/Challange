@@ -7,6 +7,6 @@ namespace Service
 {
     public interface ICalculoDeJurosService
     {
-        Task<decimal> CalcularJuros(decimal valorInicial, int tempo);
+        Task<decimal> CalcularJuros(double valorInicial, int meses);
     }
 }

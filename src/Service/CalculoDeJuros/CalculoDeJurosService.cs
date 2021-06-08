@@ -1,4 +1,5 @@
-﻿using Infraestructure.Crosscutting;
+﻿using Domain.Models;
+using Infraestructure.Crosscutting;
 using System;
 using System.Threading.Tasks;
 
@@ -12,17 +13,18 @@ namespace Service
             _apiTaxaDeJuros = apiTaxaDeJuros;
         }
 
-        public async Task<decimal> CalcularJuros(decimal valorInicial, int tempo)
+        public async Task<decimal> CalcularJuros(double valorInicial, int meses)
         {
             try
             {
                 var taxaDeJuros = await _apiTaxaDeJuros.ObterTaxaDeJuros();
-                var valorFinal = (double)valorInicial * Math.Pow((double)(1 + taxaDeJuros), tempo);
-                return decimal.Parse(valorFinal.ToString("N2"));
+                var jurosCompostos = new JurosCompostos((double)taxaDeJuros, valorInicial, meses);
+
+                return jurosCompostos.CalcularJuros();
             }            
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception($"Ocorreu um erro ao realizar o cálculo de juros. { ex.Message }");
             }
         }
     }
